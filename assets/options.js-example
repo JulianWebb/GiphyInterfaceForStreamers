@@ -1,0 +1,21 @@
+var options = {
+	maxlength: 64,
+	minlength: 3,
+	apikey: "dc6zaTOxFJmzC",
+	rating: "g"
+};
+
+var twitchOptions = {
+	options: {
+		debug: true,
+	},
+	connection: {
+		cluster: "aws",
+		reconnect: true
+	},
+	identity: {
+		username: "BOT-ACCOUNT",
+		password: "OAUTH-KEY" 
+	},
+	channels: ["ponglesesquire"]
+}
