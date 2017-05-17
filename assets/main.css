@@ -1,7 +1,45 @@
 #gifs {
-	width: 256px;
-	height: 100%;
+	width: 100%;
+	max-height: 100%;
 }
-#gif {
+
+#context {
+	max-width: 100%;
+	height: auto;
+}
+
+#query {
+	text-align: left;
+	float: left;
+	height: auto;
+	font-size: 4vw;
+	width: 50%;
+}
+
+#from {
+	text-align: right;
+	float: right;
+	height: auto;
+	font-size: 4vw;
+	width: 50%;
+}
+
+#image {
+	max-width: 100%;
+}
+
+#image > img {
+	height: auto;
+	display: block;
+	width: 100%;
+}
+
+#logo {
+	max-width:25%;
+}
+
+#logo > img {
+	height:auto;
+	display: block;
 	width: 100%;
 }

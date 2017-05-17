@@ -1,11 +1,14 @@
 //Globals, globals for days
-var gifIds = [];
+var gifQueue = [];
 var queries = [];
 var gifIsPlaying = false;
 var gifStart;
-var gifTag = document.getElementById('gif');
-var queryTag = document.getElementById('query');
-var displayTag = document.getElementById('gifs');
+
+var tags = new Object();
+tags.gif = document.getElementById('img');
+tags.query = document.getElementById('query');
+tags.from = document.getElementById('from');
+tags.display = document.getElementById('gifs');
 
 var displayTime = 10; //in seconds
 var cycleTime = 5; //in seconds
@@ -40,8 +43,13 @@ client.on('chat', function(channel, user, message, self) {
 						client.action(twitchOptions.channels[0], "Sorry " + user['display-name'] + ", but we can't find a gif related to that!");
 					} else {
 						client.action(twitchOptions.channels[0], user['display-name'] + ", your gif is on it's way!")
-						gifIds.push(data.data["0"].id);
-						queries.push(parameters);
+						var gif = {
+							from: user['display-name'],
+							query: parameters,
+							id: data.data["0"].id
+						}
+						console.log(gif);
+						gifQueue.push(gif);
 					};
 				})
 				break;
@@ -61,7 +69,7 @@ function gifLoop() {
 	if (gifIsPlaying) {
 		if (Date.now() - gifStart >= displayTime) {
 			gifIsPlaying = false;
-			displayTag.style.display = "none";
+			tags.display.style.display = "none";
 			startGif();
 		} else {
 
@@ -75,15 +83,15 @@ function gifLoop() {
 
 
 function startGif() {
-	if (gifIds.length > 0) {
-		gifTag.src = "http://i.giphy.com/" + gifIds[0] + ".gif";
+	if (gifQueue.length > 0) {
+		tags.gif.src = "http://i.giphy.com/" + gifQueue[0].id + ".gif";
 		
-		queryTag.text = queries[0];
-		displayTag.style.display = "";
-		
-		gifIds.splice(0, 1);
-		queries.splice(0, 1);
+		tags.query.textContent = gifQueue[0].query;
+		tags.from.textContent = gifQueue[0].from;
 
+		tags.display.style.display = "";
+		
+		gifQueue.splice(0, 1);
 		gifStart = Date.now();
 		gifIsPlaying = true;
 		

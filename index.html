@@ -2,20 +2,17 @@
 <html>
     <head>
         <title>Giphy Interface For Streams</title>
-        <link href="assets/main.css" type="text/css" />
+        <link rel="stylesheet" href="assets/main.css" type="text/css" />
     </head>
     <body>
-        <table id="gifs">
-            <tr>
-                <th id="query"></th>
-            </tr>
-            <tr>
-                <td><img id="gif" src=""></td>
-            </tr>
-            <tr>
-                <td><img id="logo" src="assets/giphylogo.png" /></td>
-            </tr>
-        </table>
+        <div id="gifs">
+            <div id="context">
+                <span id="query"></span>
+                <span id="from"></span>
+            </div>
+            <div id="image"><img id="img" src="" /></div>
+            <div id="logo"><img src="assets/giphylogo.png" /></div>
+        </div>
 
         <script src="//cdn.tmijs.org/js/latest/1.x/tmi.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
